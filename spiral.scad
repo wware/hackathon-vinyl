@@ -14,14 +14,14 @@ outer_gap = SCALE * 1/16;
 
 module spiral(inner, outer)
 {
-    width = 0.5;
+    width = 1;
     delta = 2 * width;
     loops = (outer - inner) / delta;
     linear_extrude(height=1) polygon(points=concat(
-        [for(t = [0:360*loops]) 
+        [for(t = [0:360*loops+1])
             [(inner-width+delta*t/360)*cos(t),
              (inner-width+delta*t/360)*sin(t)]],
-        [for(t = [360*loops:-1:0]) 
+        [for(t = [360*loops:-1:-1])
             [(inner+t*delta/360)*cos(t),
              (inner+delta*t/360)*sin(t)]]
     ));
