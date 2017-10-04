@@ -4,7 +4,7 @@ Label will be 1.6" wide. Hole in center is 1/8".
 */
 
 $fn = 60;
-height = 2;
+height = 1;
 SCALE = (4.5 / 12) * 25.4;
 outermost = SCALE * 12;
 hole = SCALE * (1/3);
@@ -18,10 +18,10 @@ module spiral(inner, outer)
     delta = 2 * width;
     loops = (outer - inner) / delta;
     linear_extrude(height=1) polygon(points=concat(
-        [for(t = [0:360*loops+1])
+        [for(t = [0:3:360*loops+1])
             [(inner-width+delta*t/360)*cos(t),
              (inner-width+delta*t/360)*sin(t)]],
-        [for(t = [360*loops:-1:-1])
+        [for(t = [360*loops:-3:-1])
             [(inner+t*delta/360)*cos(t),
              (inner+delta*t/360)*sin(t)]]
     ));
